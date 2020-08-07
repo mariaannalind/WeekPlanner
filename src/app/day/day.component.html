@@ -1,4 +1,4 @@
-<mat-card class="day-card">
+<mat-card class="day-card" cdkDropList (cdkDropListDropped)="drop($event)">
   <mat-card-header>
     <mat-card-title>
       {{ dayName }}

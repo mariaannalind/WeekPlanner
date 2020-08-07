@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-week',
@@ -12,8 +13,12 @@ export class WeekComponent implements OnInit {
 
   constructor() {}
 
-  drop(event): void {
-    console.log(event);
+  drop(event: CdkDragDrop<string[]>): void {
+    moveItemInArray(
+      this.repeatedTasks,
+      event.previousIndex,
+      event.currentIndex
+    );
   }
 
   ngOnInit(): void {

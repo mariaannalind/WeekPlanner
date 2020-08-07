@@ -1,15 +1,15 @@
-<div class="week-container">
-  <app-day [dayName]="day" *ngFor="let day of weekDays"></app-day>
-</div>
+<div cdkDropListGroup>
+  <div class="week-container">
+    <app-day [dayName]="day" *ngFor="let day of weekDays"></app-day>
+  </div>
 
-<div
-  cdkDropList
-  #todoList="cdkDropList"
-  [cdkDropListData]="repeatedTasks"
-  class="repeated-tasks"
-  (cdkDropListDropped)="drop($event)"
->
-  <div class="repeated-task" *ngFor="let repeatedTask of repeatedTasks" cdkDrag>
-    {{ repeatedTask }}
+  <div cdkDropList class="repeated-tasks" (cdkDropListDropped)="drop($event)">
+    <div
+      class="repeated-task"
+      *ngFor="let repeatedTask of repeatedTasks"
+      cdkDrag
+    >
+      {{ repeatedTask }}
+    </div>
   </div>
 </div>
