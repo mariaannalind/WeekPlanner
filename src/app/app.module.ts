@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DayModule } from './day/day.module';
 import { WeekModule } from './week/week.module';
+import { RepeatedTasksModule } from './repeated-tasks/repeated-tasks.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { WeekModule } from './week/week.module';
     MatToolbarModule,
     DayModule,
     WeekModule,
+    RepeatedTasksModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

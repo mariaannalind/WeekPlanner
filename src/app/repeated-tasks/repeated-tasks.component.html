@@ -1,0 +1,6 @@
+<div cdkDropList class="repeated-tasks" (cdkDropListDropped)="drop($event)">
+  <div class="repeated-task" *ngFor="let repeatedTask of repeatedTasks" cdkDrag>
+    <span class="repeated-name">{{ repeatedTask.name }}</span>
+    <span class="repeated-repetitions">{{ repeatedTask.repetitions }}</span>
+  </div>
+</div>
