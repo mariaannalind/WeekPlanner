@@ -30,6 +30,7 @@ export class DayComponent implements OnInit {
   }
 
   drop(event): void {
+    console.log(event.previousContainer, event.container);
     const repeatedTaskText = event.item.element.nativeElement.getElementsByClassName(
       'repeated-name'
     )[0].innerText;
