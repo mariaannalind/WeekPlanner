@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { RepeatedTasksService } from '../repeated-tasks/repeated-tasks.service';
 
 @Component({
   selector: 'app-day',
@@ -12,7 +13,7 @@ export class DayComponent implements OnInit {
   @Input() dayName: string;
   @Input() event: CdkDragDrop<string[]>;
 
-  constructor() {}
+  constructor(private repeatedTasksService: RepeatedTasksService) {}
 
   onAddTaskMethod(): void {
     if (this.newTask !== '') {
@@ -30,10 +31,11 @@ export class DayComponent implements OnInit {
   }
 
   drop(event): void {
-    console.log(event.previousContainer, event.container);
-    const repeatedTaskText = event.item.element.nativeElement.getElementsByClassName(
+    const repeatedTask = event.item.element.nativeElement;
+    const repeatedTaskText = repeatedTask.getElementsByClassName(
       'repeated-name'
     )[0].innerText;
+
     this.tasks.push(repeatedTaskText);
   }
 
