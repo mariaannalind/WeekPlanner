@@ -5,8 +5,8 @@ import {
   CdkDropList,
   CdkDragExit,
 } from '@angular/cdk/drag-drop';
-import { IRepeatedTask } from './repeated-task';
-import { RepeatedTasksService } from './repeated-tasks.service';
+import { ITask } from './task';
+import { TasksService } from './../shared/tasks.service';
 
 @Component({
   selector: 'app-repeated-tasks',
@@ -15,24 +15,27 @@ import { RepeatedTasksService } from './repeated-tasks.service';
 })
 export class RepeatedTasksComponent implements OnInit {
   @Input() event: CdkDragDrop<string[]>;
-  repeatedTasks: IRepeatedTask[];
 
-  constructor(private repeatedTasksService: RepeatedTasksService) {}
+  constructor(private taskService: TasksService) {}
+
+  get repeatedTasks(): ITask[] {
+    return this.taskService.repeatedTasks;
+  }
 
   drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(
-      this.repeatedTasks,
+      this.taskService.repeatedTasks,
       event.previousIndex,
       event.currentIndex
     );
   }
 
-  test(event: CdkDragExit<string[]>): void {
+  taskMoved(event: CdkDragExit<string[]>): void {
     const repeatedTaskId = +event.item.element.nativeElement
       .getElementsByClassName('repeated-name')[0]
       .getAttribute('id');
 
-    const repeatedTask = this.repeatedTasks.find(
+    const repeatedTask = this.taskService.repeatedTasks.find(
       (task) => task.id === repeatedTaskId
     );
 
@@ -44,7 +47,5 @@ export class RepeatedTasksComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.repeatedTasks = this.repeatedTasksService.getRepeatedTasksList();
-  }
+  ngOnInit(): void {}
 }

@@ -7,7 +7,7 @@
   <mat-card-content>
     <mat-list role="list">
       <mat-list-item *ngFor="let task of tasks"
-        >{{ task }}
+        >{{ task.name }}
         <button mat-icon-button (click)="onRemoveTaskMethod(task)">
           <mat-icon>remove_circle_outline</mat-icon>
         </button>
@@ -17,7 +17,7 @@
       <mat-label>Add task:</mat-label>
       <input
         matInput
-        [(ngModel)]="newTask"
+        [(ngModel)]="newTaskName"
         (blur)="onAddTaskMethod()"
         (keydown.enter)="onAddTaskMethod()"
       />

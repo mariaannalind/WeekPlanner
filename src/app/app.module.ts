@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { DayModule } from './day/day.module';
 import { WeekModule } from './week/week.module';
 import { RepeatedTasksModule } from './repeated-tasks/repeated-tasks.module';
+import { TasksService } from './shared/tasks.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,7 @@ import { RepeatedTasksModule } from './repeated-tasks/repeated-tasks.module';
     WeekModule,
     RepeatedTasksModule,
   ],
-  providers: [],
+  providers: [TasksService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
