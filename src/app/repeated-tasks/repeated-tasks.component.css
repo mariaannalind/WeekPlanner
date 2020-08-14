@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+.repeated-tasks .cdk-drop-list {
+  width: 100%;
+}
+
 .repeated-task {
   padding: 10px 10px;
   border: solid 1px #ccc;

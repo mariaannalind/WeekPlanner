@@ -1,18 +1,41 @@
-<div
-  cdkDropList
-  class="repeated-tasks"
-  (cdkDropListExited)="taskMoved($event)"
-  (cdkDropListDropped)="drop($event)"
->
+<div class="repeated-tasks">
   <div
-    class="repeated-task"
-    *ngFor="let repeatedTask of repeatedTasks"
-    cdkDrag
-    [cdkDragDisabled]="repeatedTask.disabled"
+    cdkDropList
+    (cdkDropListExited)="taskMoved($event)"
+    (cdkDropListDropped)="drop($event)"
   >
-    <span class="repeated-name" data-id="{{ repeatedTask.id }}">{{
-      repeatedTask.name
-    }}</span>
-    <span class="repeated-repetitions">{{ repeatedTask.repetitions }}</span>
+    <div
+      class="repeated-task"
+      *ngFor="let repeatedTask of repeatedTasks"
+      cdkDrag
+      [cdkDragDisabled]="repeatedTask.disabled"
+    >
+      <span class="repeated-name" data-id="{{ repeatedTask.id }}">{{
+        repeatedTask.name
+      }}</span>
+      <span class="repeated-repetitions">{{ repeatedTask.repetitions }}</span>
+    </div>
+  </div>
+  <div>
+    <mat-card>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Name:</mat-label>
+          <input matInput [(ngModel)]="newRepeatedTaskName" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Repeats:</mat-label>
+          <input matInput [(ngModel)]="newRepetitions" />
+        </mat-form-field>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          style="width: 80px; margin-right: 10px;"
+          (click)="addNewRepeatedTask()"
+        >
+          Add
+        </button>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

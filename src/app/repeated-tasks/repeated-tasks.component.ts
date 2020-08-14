@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import {
   CdkDragDrop,
   moveItemInArray,
-  CdkDropList,
   CdkDragExit,
 } from '@angular/cdk/drag-drop';
 import { ITask } from './task';
@@ -15,6 +14,8 @@ import { TasksService } from './../shared/tasks.service';
 })
 export class RepeatedTasksComponent implements OnInit {
   @Input() event: CdkDragDrop<string[]>;
+  newRepetitions: number;
+  newRepeatedTaskName: string;
 
   constructor(private taskService: TasksService) {}
 
@@ -45,6 +46,20 @@ export class RepeatedTasksComponent implements OnInit {
     } else {
       repeatedTask.disabled = true;
     }
+  }
+
+  addNewRepeatedTask(): void {
+    const newId = this.taskService.repeatedTasks.length + 1;
+    const newRepeatedTask = {
+      id: newId,
+      disabled: false,
+      repetitions: this.newRepetitions,
+      name: this.newRepeatedTaskName,
+    };
+
+    this.taskService.repeatedTasks.push(newRepeatedTask);
+    this.newRepetitions = null;
+    this.newRepeatedTaskName = '';
   }
 
   ngOnInit(): void {}
